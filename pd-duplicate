@@ -1,0 +1,7 @@
+import pandas as pd
+
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    return customers.drop_duplicates(subset='email')
+
+The subset parameter in the drop_duplicates method of a 
+pandas DataFrame specifies which columns to consider when identifying duplicate rows.
