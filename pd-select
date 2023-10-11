@@ -1,0 +1,9 @@
+import pandas as pd
+
+def selectData(students: pd.DataFrame) -> pd.DataFrame:
+    #create dataframe
+    df = pd.DataFrame(students)
+
+    #select name and age
+    return df[students['student_id'] == 101][['name', 'age']]
+    
