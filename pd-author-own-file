@@ -1,0 +1,41 @@
+import pandas as pd
+
+def article_views(views: pd.DataFrame) -> pd.DataFrame:
+    # Filter rows where author viewed their own article
+    self_views = views[views['author_id'] == views['viewer_id']]
+    
+    # Select unique author_ids who viewed their own articles and sort them
+    result = self_views['author_id'].drop_duplicates().sort_values().reset_index(drop=True)
+    
+    # Convert the Series to DataFrame with column name 'id'
+    result = result.to_frame(name='id')
+    
+    return result
+
+
+
+
+
+
+Example 1:
+
+Input: 
+Views table:
++------------+-----------+-----------+------------+
+| article_id | author_id | viewer_id | view_date  |
++------------+-----------+-----------+------------+
+| 1          | 3         | 5         | 2019-08-01 |
+| 1          | 3         | 6         | 2019-08-02 |
+| 2          | 7         | 7         | 2019-08-01 |
+| 2          | 7         | 6         | 2019-08-02 |
+| 4          | 7         | 1         | 2019-07-22 |
+| 3          | 4         | 4         | 2019-07-21 |
+| 3          | 4         | 4         | 2019-07-21 |
++------------+-----------+-----------+------------+
+Output: 
++------+
+| id   |
++------+
+| 4    |
+| 7    |
++------+
