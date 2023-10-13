@@ -1,0 +1,37 @@
+import pandas as pd
+
+# Modify Person in place
+def delete_duplicate_emails(person: pd.DataFrame) -> None:
+    # Sorting the DataFrame by 'id' to ensure the smallest 'id' is kept
+    person.sort_values(by='id', inplace=True)
+    
+    # Identifying indices of duplicate emails, keeping the first occurrence
+    duplicate_indices = person[person.duplicated(subset='email', keep='first')].index
+    
+    # Dropping duplicate rows in place
+    person.drop(index=duplicate_indices, inplace=True)
+
+
+    he result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Person table:
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+| 3  | john@example.com |
++----+------------------+
+Output: 
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+Explanation: john@example.com is repeated two times. We keep the row with the smallest Id = 1.
