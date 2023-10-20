@@ -1,0 +1,16 @@
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        max_count = 0  # To keep track of the maximum number of consecutive 1s
+        current_count = 0  # To keep track of the current streak of 1s
+    
+        for num in nums:
+            if num == 1:
+                # If the current number is 1, increase the current count
+                current_count += 1
+                # Update the maximum count if the current count exceeds it
+                max_count = max(max_count, current_count)
+            else:
+                # If the current number is not 1, reset the current count
+                current_count = 0
+
+        return max_count
